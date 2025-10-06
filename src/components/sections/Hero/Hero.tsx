@@ -6,8 +6,51 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/all";
 import Spline from "@splinetool/react-spline";
 import LiquidEther from "../../LiquidEther";
+import { FloatingDock } from "@/components/ui/floating-dock";
+import {
+  IconBrandGithub,
+  IconBrandLeetcode,
+  IconBrandLinkedin,
+} from "@tabler/icons-react";
 
 gsap.registerPlugin(ScrollTrigger);
+
+export const PROFILE_LINKS = [
+  {
+    title: "LeetCode",
+    icon: (
+      <IconBrandLeetcode className="h-full w-full text-orange-600 dark:text-orange-400" />
+    ),
+    href: "https://leetcode.com/u/yd13/",
+  },
+
+  {
+    title: "GeekForGeeks",
+    icon: (
+      <img
+        src="/img/logos/icons8-geeksforgeeks.svg"
+        width={40}
+        height={40}
+        alt="GeekForGeeks Logo"
+      />
+    ),
+    href: "https://www.geeksforgeeks.org/user/yd13/",
+  },
+  {
+    title: "Github",
+    icon: (
+      <IconBrandGithub className="h-full w-full text-neutral-700 dark:text-neutral-500" />
+    ),
+    href: "https://github.com/yashpd6634",
+  },
+  {
+    title: "LinkedIn",
+    icon: (
+      <IconBrandLinkedin className="h-full w-full text-blue-700 dark:text-blue-500" />
+    ),
+    href: "https://www.linkedin.com/in/yash-dewangan-3737671a4/",
+  },
+];
 
 const Hero = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -140,17 +183,20 @@ const Hero = () => {
                 <h1 className="special-font hero-heading bg-gradient-to-r from-purple-600 via-pink-600 to-blue-600 bg-clip-text text-transparent">
                   portf<b>o</b>lio
                 </h1>
-                <p className="mb-5 max-w-64 font-robert-regular text-black">
-                  Full Stack Developer <br /> .NET & React Specialist
+                <p className="mt-10 mb-5 max-w-128 font-robert-regular font-bold text-3xl text-black">
+                  Full Stack Developer <br /> NextJS & ReactJS Specialist
                 </p>
 
                 {/* Enable pointer events only for the button */}
                 <div className="pointer-events-auto">
                   <Button
-                    id="view-portfolio"
-                    title="View Portfolio"
+                    id="view-resume"
+                    title="View Resume"
                     leftIcon={<TiLocationArrow />}
-                    containerClass="bg-yellow-300 flex-center gap-1"
+                    onClick={() =>
+                      window.open("https://drive.google.com/file/d/1rTNJBVCLgEkKQwx173DY5TmdTZBPgpXY/view?usp=drive_link", "_blank")
+                    }
+                    containerClass="bg-yellow-300 flex-center gap-1 px-8 py-4 text-4xl"
                   />
                 </div>
               </div>
@@ -162,6 +208,14 @@ const Hero = () => {
       <h1 className="special-font hero-heading absolute bottom-5 right-5 bg-gradient-to-r from-yellow-200 via-orange-200 to-red-200 bg-clip-text text-transparent">
         Y<b>a</b>sh
       </h1>
+
+      {/* FloatingDock positioned at bottom left */}
+      <div className="absolute bottom-40 left-20 z-50 scale-125 p-4 rounded-2xl bg-gradient-to-br from-indigo-900/20 via-purple-900/30 to-fuchsia-900/20 backdrop-blur-md border border-white/10 shadow-2xl sm:bottom-10 sm:left-10 sm:scale-100 sm:p-3 md:bottom-16 md:left-16 md:scale-110 lg:bottom-20 lg:left-20 lg:scale-125">
+        <FloatingDock
+          mobileClassName="translate-y-20" // only for demo, remove for production
+          items={PROFILE_LINKS}
+        />
+      </div>
     </div>
   );
 };
