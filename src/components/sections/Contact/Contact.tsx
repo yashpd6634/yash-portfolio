@@ -1,5 +1,4 @@
-import AnimatedTitle from "../AnimatedTitle";
-import Button from "../Button";
+import { AnimatedTitle, Button } from "../../common";
 
 const ImageClipBox = ({
   src,
