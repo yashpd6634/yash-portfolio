@@ -16,4 +16,4 @@ export * from "./ui";
 // Individual exports for backward compatibility
 export { Button, AnimatedTitle } from "./common";
 export { Navbar, Footer } from "./layout";
-export { Hero, About, Features, Story, Contact } from "./sections";
+export { Hero, Hero2, About, Features, Story, Contact } from "./sections";

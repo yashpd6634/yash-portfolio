@@ -1,5 +1,6 @@
 // Section Components
 export { default as Hero } from "./Hero/Hero";
+export { default as Hero2 } from "./Hero/Hero2";
 export { default as About } from "./About/About";
 export { default as Features } from "./Features/Features";
 export { default as Story } from "./Story/Story";
