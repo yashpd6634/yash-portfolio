@@ -1,87 +1,58 @@
-import { useEffect, useRef, useState } from "react";
+import { useState, useEffect } from "react";
 import { Button } from "../../common";
 import { TiLocationArrow } from "react-icons/ti";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/all";
+import Spline from "@splinetool/react-spline";
+import LiquidEther from "../../LiquidEther";
 
 gsap.registerPlugin(ScrollTrigger);
 
 const Hero = () => {
-  const [currentIndex, setCurrentIndex] = useState<number>(1);
-  const [hasClicked, setHasClicked] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
-  const [loadedVideos, setLoadedVideos] = useState(0);
+  const [splineError, setSplineError] = useState(false);
 
-  const totalVideos = 4;
-  const nextVideoRef = useRef<HTMLVideoElement | null>(null);
-
-  const handleVideoLoad = () => {
-    setLoadedVideos((prev) => prev + 1);
+  const handleSplineLoad = () => {
+    setIsLoading(false);
   };
 
-  const upcomingVideoIndex = (currentIndex % totalVideos) + 1;
-
-  const handleMiniVdClick = () => {
-    setHasClicked(true);
-
-    setCurrentIndex(upcomingVideoIndex);
+  const handleSplineError = () => {
+    console.warn("Spline failed to load, showing fallback");
+    setSplineError(true);
+    setIsLoading(false);
   };
 
   useEffect(() => {
-    if (loadedVideos === totalVideos - 1) {
-      setIsLoading(false);
-    }
-  }, [loadedVideos]);
-
-  useGSAP(
-    () => {
-      if (hasClicked) {
-        gsap.set("#next-video", { visibility: "visible" });
-
-        gsap.to("#next-video", {
-          transformOrigin: "center center",
-          scale: 1,
-          width: "100%",
-          height: "100%",
-          duration: 1,
-          ease: "power1.inOut",
-          onStart: () => {
-            nextVideoRef.current?.play();
-          },
-        });
-
-        gsap.from("#current-video", {
-          transformOrigin: "center center",
-          scale: 0,
-          duration: 1.5,
-          ease: "power1.inOut",
-        });
+    // Fallback timer in case Spline takes too long
+    const timer = setTimeout(() => {
+      if (isLoading) {
+        setIsLoading(false);
       }
-    },
-    { dependencies: [currentIndex], revertOnUpdate: true }
-  );
+    }, 10000); // 10 seconds timeout
+
+    return () => clearTimeout(timer);
+  }, [isLoading]);
 
   useGSAP(() => {
-    gsap.set("#video-frame", {
+    gsap.set("#hero-frame", {
       clipPath: "polygon(14% 0, 72% 0, 88% 90%, 0 95%)",
       borderRadius: "0% 0% 40% 10%",
     });
 
-    gsap.from("#video-frame", {
+    // Create the scroll-triggered animation
+    gsap.from("#hero-frame", {
       clipPath: "polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)",
       borderRadius: "0% 0% 0% 0%",
       ease: "power1.inOut",
       scrollTrigger: {
-        trigger: "#video-frame",
+        trigger: "#hero-frame",
         start: "center center",
         end: "bottom center",
         scrub: true,
       },
     });
   });
-
-  const getVideoSource = (index: number) => `videos/hero-${index}.mp4`;
 
   return (
     <div className="relative h-dvh w-screen overflow-x-hidden">
@@ -95,74 +66,101 @@ const Hero = () => {
         </div>
       )}
 
-      <div
-        id="video-frame"
-        className="relative z-10 h-dvh w-screen overflow-hidden rounded-lg bg-blue-75"
-      >
-        <div>
-          <div className="mask-clip-path absolute-center absolute z-50 size-64 cursor-pointer overflow-hidden rounded-lg">
-            <div
-              onClick={handleMiniVdClick}
-              className="origin-center scale-50 opacity-0 transition-all duration-500 ease-in hover:scale-100 hover:opacity-100"
-            >
-              <video
-                ref={nextVideoRef}
-                src={getVideoSource(currentIndex + 1)}
-                loop
-                muted
-                id="current-video"
-                className="size-64 origin-center scale-150 object-cover object-center"
-                onLoadedData={handleVideoLoad}
-              />
-            </div>
+      <div id="hero-frame" className="relative z-10 h-dvh w-screen bg-black">
+        <div className="hero-content absolute left-0 top-0 size-full bg-gradient-to-br from-indigo-900 via-purple-900 to-fuchsia-900" />
+        <div
+          className="hero-content relative z-10 h-dvh w-screen"
+          style={{
+            clipPath: "polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)",
+          }}
+        >
+          <div className="absolute inset-0" style={{ pointerEvents: "auto" }}>
+            <LiquidEther
+              className="w-full h-full"
+              colors={["#1e40af", "#3b82f6", "#8b5cf6", "#a855f7", "#d946ef"]}
+              mouseForce={20}
+              cursorSize={100}
+              isViscous={true}
+              viscous={30}
+              iterationsViscous={32}
+              iterationsPoisson={32}
+              dt={0.014}
+              BFECC={true}
+              resolution={0.5}
+              isBounce={true}
+              autoDemo={true}
+              takeoverDuration={0.1}
+              autoResumeDelay={3000}
+              autoRampDuration={0.6}
+              style={{
+                width: "100%",
+                height: "100%",
+                position: "absolute",
+                top: 0,
+                left: 0,
+                pointerEvents: "auto",
+              }}
+            />
           </div>
 
-          <video
-            ref={nextVideoRef}
-            src={getVideoSource(currentIndex)}
-            loop
-            muted
-            id="next-video"
-            className="absolute-center invisible absolute z-20 size-64  object-cover object-center"
-            onLoadedData={handleVideoLoad}
-          />
-
-          <video
-            src={getVideoSource(
-              currentIndex === totalVideos - 1 ? 1 : currentIndex
+          <div className="absolute inset-0 pointer-events-none">
+            {!splineError ? (
+              <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-4/5 h-4/5 md:top-0 md:right-0 md:left-auto md:transform-none md:w-3/5 md:h-4/5">
+                <Spline
+                  scene="https://prod.spline.design/3B8JppQCecaCNdtZ/scene.splinecode"
+                  onLoad={handleSplineLoad}
+                  onError={handleSplineError}
+                  style={{
+                    width: "100%",
+                    height: "100%",
+                    objectFit: "contain",
+                  }}
+                />
+              </div>
+            ) : (
+              <div className="absolute top-0 right-0 w-1/2 h-1/2 md:w-2/5 md:h-3/5 bg-gradient-to-br from-yellow-400/20 to-purple-400/20 rounded-lg flex-center">
+                <div className="text-4xl animate-bounce">🤖</div>
+              </div>
             )}
-            autoPlay
-            loop
-            muted
-            className="absolute left-0 top-0 size-full object-cover object-center"
-            onLoadedData={handleVideoLoad}
-          />
-        </div>
-        <h1 className="special-font hero-heading absolute bottom-5  right-5 z-40 text-blue-75">
-          G<b>a</b>ming
-        </h1>
 
-        <div className="absolute left-0 top-0 z-40  size-full">
-          <div className="mt-24 px-5 sm:px-10">
-            <h1 className="special-font hero-heading text-blue-100">
-              redefi<b>n</b>e
+            {/* Decorative particles */}
+            <div className="absolute inset-0">
+              <div className="absolute top-1/4 left-1/4 w-16 h-16 bg-yellow-400/10 rounded-full animate-pulse"></div>
+              <div className="absolute bottom-1/3 left-1/2 w-12 h-12 bg-blue-400/10 rounded-full animate-bounce"></div>
+              <div className="absolute top-2/3 right-1/3 w-20 h-20 bg-purple-400/10 rounded-full animate-ping"></div>
+            </div>
+
+            {/* Text content */}
+            <h1 className="special-font hero-heading absolute bottom-5 right-5 z-40 bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 bg-clip-text text-transparent">
+              Y<b>a</b>sh
             </h1>
-            <p className="mb-5 max-w-64 font-robert-regular text-blue-100">
-              Enter the Metagame Layer <br /> Unleash the Play Economy
-            </p>
 
-            <Button
-              id="watch-trailer"
-              title="Watch trailer"
-              leftIcon={<TiLocationArrow />}
-              containerClass="bg-yellow-300 flex-center gap-1"
-            />
+            <div className="absolute left-0 top-0 size-full">
+              <div className="mt-24 px-5 sm:px-10">
+                <h1 className="special-font hero-heading bg-gradient-to-r from-purple-600 via-pink-600 to-blue-600 bg-clip-text text-transparent">
+                  portf<b>o</b>lio
+                </h1>
+                <p className="mb-5 max-w-64 font-robert-regular text-black">
+                  Full Stack Developer <br /> .NET & React Specialist
+                </p>
+
+                {/* Enable pointer events only for the button */}
+                <div className="pointer-events-auto">
+                  <Button
+                    id="view-portfolio"
+                    title="View Portfolio"
+                    leftIcon={<TiLocationArrow />}
+                    containerClass="bg-yellow-300 flex-center gap-1"
+                  />
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
 
-      <h1 className="special-font hero-heading absolute bottom-5 right-5 text-black">
-        G<b>a</b>ming
+      <h1 className="special-font hero-heading absolute bottom-5 right-5 bg-gradient-to-r from-yellow-200 via-orange-200 to-red-200 bg-clip-text text-transparent">
+        Y<b>a</b>sh
       </h1>
     </div>
   );
