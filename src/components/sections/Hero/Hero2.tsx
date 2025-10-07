@@ -51,8 +51,8 @@ const Hero2 = () => {
             </div>
 
             <p className="text-white-50 md:text-xl relative z-10 pointer-events-none">
-              Hi, I’m Adrian, a developer based in Croatia with a passion for
-              code.
+              Hi, I’m Yash P Dewangan, a full-stack developer from India <br /> with a
+              passion for crafting scalable solutions.
             </p>
 
             <Button
