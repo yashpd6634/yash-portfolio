@@ -212,7 +212,8 @@ const Hero = () => {
       {/* FloatingDock positioned at bottom left */}
       <div className="absolute bottom-40 left-20 z-50 scale-125 p-4 rounded-2xl bg-gradient-to-br from-indigo-900/20 via-purple-900/30 to-fuchsia-900/20 backdrop-blur-md border border-white/10 shadow-2xl sm:bottom-10 sm:left-10 sm:scale-100 sm:p-3 md:bottom-16 md:left-16 md:scale-110 lg:bottom-20 lg:left-20 lg:scale-125">
         <FloatingDock
-          mobileClassName="translate-y-20" // only for demo, remove for production
+          desktopClassName="floating-dock-desktop"
+          mobileClassName="floating-dock-mobile translate-y-20" // only for demo, remove for production
           items={PROFILE_LINKS}
         />
       </div>

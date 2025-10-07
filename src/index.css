@@ -755,6 +755,28 @@ section {
   animation: wobble2 var(--uib-speed) infinite ease-in-out;
 }
 
+/* Desktop styles for FloatingDock */
+.floating-dock-desktop {
+  background: linear-gradient(135deg, #4c1d95, #7c3aed, #a855f7); /* Gradient with vibrant colors */
+  border-radius: 12px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2); /* Subtle shadow for depth */
+  backdrop-filter: blur(10px); /* Glassmorphism effect */
+  border: 1px solid rgba(255, 255, 255, 0.2); /* Light border for texture */
+  padding: 8px;
+  transition: all 0.3s ease;
+}
+
+/* Mobile styles for FloatingDock */
+.floating-dock-mobile {
+  background: linear-gradient(135deg, #5b21b6, #8b5cf6, #c084fc); /* Slightly different gradient for mobile */
+  border-radius: 10px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15); /* Softer shadow for smaller screens */
+  backdrop-filter: blur(8px); /* Glassmorphism effect */
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  padding: 6px;
+  transform: scale(0.9); /* Slightly smaller scale for mobile */
+}
+
 @keyframes spin78236 {
   0% {
     transform: rotate(0deg);
