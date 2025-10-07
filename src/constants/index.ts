@@ -75,37 +75,73 @@ export const counterItems = [
 
 export const logoIconsList = [
   {
-    imgPath: "/img/logos/company-logo-1.png",
+    imgPath: "/img/logos/ApacheKafka.svg",
   },
   {
-    imgPath: "/img/logos/company-logo-2.png",
+    imgPath: "/img/logos/CPlusPlus.svg",
   },
   {
-    imgPath: "/img/logos/company-logo-3.png",
+    imgPath: "/img/logos/HTML5.svg",
   },
   {
-    imgPath: "/img/logos/company-logo-4.png",
+    imgPath: "/img/logos/CSS3.svg",
   },
   {
-    imgPath: "/img/logos/company-logo-5.png",
+    imgPath: "/img/logos/React.svg",
   },
   {
-    imgPath: "/img/logos/company-logo-6.png",
+    imgPath: "/img/logos/Go.svg",
   },
   {
-    imgPath: "/img/logos/company-logo-7.png",
+    imgPath: "/img/logos/Nodejs.svg",
   },
   {
-    imgPath: "/img/logos/company-logo-8.png",
+    imgPath: "/img/logos/GraphQL.svg",
   },
   {
-    imgPath: "/img/logos/company-logo-9.png",
+    imgPath: "/img/logos/Docker.svg",
   },
   {
-    imgPath: "/img/logos/company-logo-10.png",
+    imgPath: "/img/logos/Django.svg",
   },
   {
-    imgPath: "/img/logos/company-logo-11.png",
+    imgPath: "/img/logos/Electron.svg",
+  },
+  {
+    imgPath: "/img/logos/Firebase.svg",
+  },
+  {
+    imgPath: "/img/logos/JavaScript.svg",
+  },
+  {
+    imgPath: "/img/logos/Jest.svg",
+  },
+  {
+    imgPath: "/img/logos/JSON.svg",
+  },
+  {
+    imgPath: "/img/logos/MongoDB.svg",
+  },
+  {
+    imgPath: "/img/logos/Nestjs.svg",
+  },
+  {
+    imgPath: "/img/logos/NPM.svg",
+  },
+  {
+    imgPath: "/img/logos/python.svg",
+  },
+  {
+    imgPath: "/img/logos/Redux.svg",
+  },
+  {
+    imgPath: "/img/logos/Socketio.svg",
+  },
+  {
+    imgPath: "/img/logos/Threejs.svg",
+  },
+  {
+    imgPath: "/img/logos/TypeScript.svg",
   },
 ];
 
