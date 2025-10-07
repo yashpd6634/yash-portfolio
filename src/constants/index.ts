@@ -196,7 +196,7 @@ export const techStackIcons = [
   {
     name: "Python Developer",
     modelPath: "/models/python-transformed.glb",
-    scale: 0.8,
+    scale: 1,
     rotation: [0, 0, 0],
   },
   {
@@ -208,7 +208,7 @@ export const techStackIcons = [
   {
     name: "Go Developer",
     modelPath: "/models/go_gopher.glb",
-    scale: 1.4,
+    scale: 1.2,
     rotation: [0, 0, 0],
   },
   {
