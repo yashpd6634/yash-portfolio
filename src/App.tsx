@@ -14,6 +14,7 @@ import {
   TechStack,
   Contact2,
   Footer2,
+  Achievements,
 } from "./components";
 
 const App = () => {
@@ -31,6 +32,8 @@ const App = () => {
       <Experience />
       <TechStack />
       <LogoShowcase />
+      
+      <Achievements />
       {/* <Contact /> */}
       <Contact2 />
       {/* <Footer /> */}

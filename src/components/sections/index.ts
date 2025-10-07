@@ -11,3 +11,4 @@ export { default as FeatureCards } from "./Features/FeatureCards";
 export { default as Experience } from "./Experience/Experience";
 export { default as TechStack } from "./TechStack/TechStack";
 export { default as Contact2 } from "./Contact/Contact2";
+export { default as Achievements } from "./Achievements/Achievements";
