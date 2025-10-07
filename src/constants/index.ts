@@ -2,10 +2,11 @@
 
 // Navigation items
 export const NAV_ITEMS = [
+  { label: "Home", href: "#hero" },
   { label: "Work", href: "#work" },
   { label: "Experience", href: "#experience" },
   { label: "Skills", href: "#skills" },
-  { label: "About", href: "#about" },
+  { label: "Achievements", href: "#achievements" },
   { label: "Contact", href: "#contact" },
 ];
 

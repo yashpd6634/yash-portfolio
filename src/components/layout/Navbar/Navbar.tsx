@@ -5,13 +5,24 @@ import { useEffect, useRef, useState } from "react";
 import { TiLocationArrow } from "react-icons/ti";
 
 import { Button } from "../../common";
+import { NAV_ITEMS } from "../../../constants";
 
-const navItems = ["Nexus", "Vault", "Prologue", "About", "Contact"];
+// Smooth scroll function
+const smoothScrollTo = (elementId: string) => {
+  const element = document.getElementById(elementId.replace("#", ""));
+  if (element) {
+    element.scrollIntoView({
+      behavior: "smooth",
+      block: "start",
+    });
+  }
+};
 
 const NavBar = () => {
   // State for toggling audio and visual indicator
   const [isAudioPlaying, setIsAudioPlaying] = useState(false);
   const [isIndicatorActive, setIsIndicatorActive] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   // Refs for audio and navigation container
   const audioElementRef = useRef<HTMLAudioElement | null>(null);
@@ -90,16 +101,40 @@ const NavBar = () => {
           {/* Navigation Links and Audio Button */}
           <div className="flex h-full items-center">
             <div className="hidden md:block">
-              {navItems.map((item, index) => (
-                <a
+              {NAV_ITEMS.map((item, index) => (
+                <button
                   key={index}
-                  href={`#${item.toLowerCase()}`}
+                  onClick={() => smoothScrollTo(item.href)}
                   className="nav-hover-btn"
                 >
-                  {item}
-                </a>
+                  {item.label}
+                </button>
               ))}
             </div>
+
+            {/* Mobile Menu Button */}
+            <button
+              className="md:hidden ml-4 text-white"
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            >
+              <div className="w-6 h-6 flex flex-col justify-between">
+                <span
+                  className={`h-0.5 w-full bg-white transition-all ${
+                    isMobileMenuOpen ? "rotate-45 translate-y-2.5" : ""
+                  }`}
+                ></span>
+                <span
+                  className={`h-0.5 w-full bg-white transition-all ${
+                    isMobileMenuOpen ? "opacity-0" : ""
+                  }`}
+                ></span>
+                <span
+                  className={`h-0.5 w-full bg-white transition-all ${
+                    isMobileMenuOpen ? "-rotate-45 -translate-y-2.5" : ""
+                  }`}
+                ></span>
+              </div>
+            </button>
 
             <button
               onClick={toggleAudioIndicator}
@@ -125,6 +160,26 @@ const NavBar = () => {
             </button>
           </div>
         </nav>
+
+        {/* Mobile Menu */}
+        {isMobileMenuOpen && (
+          <div className="md:hidden absolute top-full left-0 right-0 bg-black/95 backdrop-blur-lg border-t border-white/20 mt-2 rounded-lg mx-4">
+            <div className="py-4">
+              {NAV_ITEMS.map((item, index) => (
+                <button
+                  key={index}
+                  onClick={() => {
+                    smoothScrollTo(item.href);
+                    setIsMobileMenuOpen(false);
+                  }}
+                  className="block w-full text-left px-6 py-3 text-blue-50 hover:text-white hover:bg-white/10 transition-colors"
+                >
+                  {item.label}
+                </button>
+              ))}
+            </div>
+          </div>
+        )}
       </header>
     </div>
   );
