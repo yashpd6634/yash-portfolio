@@ -74,8 +74,14 @@ const NavBar = () => {
             <img src="/img/logo.png" alt="logo" className="w-16" />
 
             <Button
-              id="product-button"
-              title="Products"
+              id="resume-button"
+              title="Resume"
+              onClick={() =>
+                window.open(
+                  "https://drive.google.com/file/d/1rTNJBVCLgEkKQwx173DY5TmdTZBPgpXY/view?usp=drive_link",
+                  "_blank"
+                )
+              }
               rightIcon={<TiLocationArrow />}
               containerClass="bg-blue-50 md:flex hidden items-center justify-center gap-1"
             />

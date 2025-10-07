@@ -25,15 +25,15 @@ const App = () => {
       <Hero2 />
       {/* <About /> */}
       <AppShowcase />
-      <Features />
-      <LogoShowcase />
+      {/* <Features /> */}
       <FeatureCards />
-      <Story />
+      {/* <Story /> */}
       <Experience />
       <TechStack />
-      <Contact />
+      <LogoShowcase />
+      {/* <Contact /> */}
       <Contact2 />
-      <Footer />
+      {/* <Footer /> */}
       <Footer2 />
     </main>
   );

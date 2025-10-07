@@ -86,6 +86,64 @@ const projectsData = [
     githubLink: "https://github.com/yashpd6634/i-manager",
     hasLiveDemo: false,
   },
+  {
+    id: 4,
+    title: "Dev Studio",
+    description: "Full-Stack Agency Management & Website Builder Platform",
+    details:
+      "Built a comprehensive SaaS platform for digital agencies to manage clients, create websites, and automate workflows. Features multi-tenant architecture with agency/subaccount hierarchy, drag-and-drop website builder, integrated payment processing, and automation pipelines. Implemented role-based access control, real-time notifications, and third-party integrations including Stripe, Google Drive, and Slack.",
+    bulletPoints: [
+      "Developed multi-tenant SaaS platform with agency and subaccount management using Next.js 14 and TypeScript",
+      "Built drag-and-drop website builder with real-time preview and responsive design capabilities",
+      "Created automation workflows with webhook triggers for email campaigns and notifications",
+      "Designed role-based authentication system using Clerk with granular permissions",
+      "Integrated third-party services including Google Drive, Slack, and Notion for seamless workflow",
+    ],
+    image: "/img/project4.png",
+    tech: [
+      "Next.js 14",
+      "TypeScript",
+      "Prisma",
+      "TailwindCSS",
+      "Clerk Auth",
+      "Stripe",
+      "Uploadthing",
+      "Turborepo",
+      "React",
+    ],
+    bgColor: "bg-gradient-to-br from-emerald-900 to-teal-900",
+    githubLink: "https://github.com/yashpd6634/dev-studio",
+    hasLiveDemo: false,
+  },
+  {
+    id: 5,
+    title: "Let's Connect",
+    description: "Full-Stack Social Media Platform with Real-Time Features",
+    details:
+      "Developed a comprehensive social media web application enabling users to create profiles, share posts with media content, engage through likes and comments, and communicate via real-time messaging. Built with modern MERN stack architecture featuring JWT authentication, real-time Socket.io integration, and cloud-based media storage for scalable social networking experience.",
+    bulletPoints: [
+      "Built full-stack social media platform with user authentication, profile management, and secure JWT-based session handling",
+      "Implemented real-time messaging system using Socket.io with message delivery confirmations, and notification sounds",
+      "Developed comprehensive system supporting text, image, and video content with like/unlike functionality and threaded comments",
+      "Integrated Cloudinary for optimized media storage and delivery, enabling users to upload and share high-quality images and videos",
+      "Designed responsive UI with Chakra UI framework featuring dark/light mode toggle and mobile-first responsive design",
+    ],
+    image: "/img/project5.png", // You'll need to add your project image
+    tech: [
+      "Socket.io",
+      "ReactJS",
+      "ExpressJS",
+      "MongoDB",
+      "Mongoose",
+      "NodeJS",
+      "Chakra UI",
+      "Cloudinary",
+      "Recoil",
+    ],
+    bgColor: "bg-gradient-to-br from-yellow-900 to-violet-900",
+    githubLink: "https://github.com/yashpd6634/lets-connect",
+    hasLiveDemo: false, // Set to true if you deploy it
+  },
 ];
 
 const AppShowcase = () => {
