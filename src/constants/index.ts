@@ -137,7 +137,7 @@ export const techStackImgs = [
     imgPath: "/img/logos/python.svg",
   },
   {
-    name: "Backend Developer",
+    name: "NodeJS Developer",
     imgPath: "/img/logos/node.png",
   },
   {
@@ -164,7 +164,7 @@ export const techStackIcons = [
     rotation: [0, 0, 0],
   },
   {
-    name: "Backend Developer",
+    name: "NodeJS Developer",
     modelPath: "/models/node-transformed.glb",
     scale: 5,
     rotation: [0, -Math.PI / 2, 0],
