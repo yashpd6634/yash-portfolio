@@ -98,7 +98,7 @@ const cardVariants = {
 const AchievementCard: React.FC<{
   achievement: Achievement;
   index: number;
-}> = ({ achievement, index }) => {
+}> = ({ achievement }) => {
   return (
     <motion.div
       variants={cardVariants}
