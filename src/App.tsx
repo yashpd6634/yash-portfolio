@@ -1,11 +1,6 @@
 import {
   Navbar,
-  Footer,
   Hero,
-  About,
-  Features,
-  Story,
-  Contact,
   Hero2,
   LogoShowcase,
   AppShowcase,
